@@ -119,6 +119,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "MFPC-project-frontend"
+    }
+  },
+  "defaultProject": "MFPC-project-frontend",
+  "cli": {
+    "analytics": false
+  }
 }
