@@ -10,8 +10,8 @@ export class Service {
   constructor(private http: HttpClient) {
   }
 
-  async addMovieForDirector(directorId: string, movie: Movie) {
-    return await this.http.post(`${mainAPI}director/${directorId}/movie`, {movie}).toPromise();
+  async addMovieForDirector(directorId: string, movie: Movie, director: Director) {
+    return await this.http.post(`${mainAPI}director/${directorId}/movie`, {movie, director}).toPromise();
   }
 
   async getMoviesAndDirectors() {

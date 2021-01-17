@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {MatTableDataSource} from '@angular/material/table';
-import {Review, User} from '../model/models';
+import {Director, Review, User} from '../model/models';
 import {Service} from '../service/service';
 
 @Component({
@@ -47,10 +47,12 @@ export class ReviewsAndUsersComponent implements OnInit {
     };
 
     await this.service.addReviewAndUser(review, user);
+    this.populateTable();
   }
 
   async deleteReviewAndUser() {
     await this.service.deleteReviewAndUser(this.inputReviewId, this.inputUserId);
+    this.populateTable();
   }
 
   async populateTable() {

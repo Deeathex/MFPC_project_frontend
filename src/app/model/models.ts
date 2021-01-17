@@ -7,7 +7,7 @@ export interface Director {
 export interface Movie {
   id?: string;
   title: string;
-  directors?: Director[];
+  director?: Director;
 }
 
 export interface Review {

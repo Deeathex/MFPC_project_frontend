@@ -8,7 +8,7 @@ import {Service} from '../service/service';
   styleUrls: ['../app.component.css']
 })
 export class MoviesAndDirectorsComponent implements OnInit {
-  moviesDisplayedColumns = ['ID', 'title', 'directors'];
+  moviesDisplayedColumns = ['ID', 'title', 'director'];
   directorsDisplayedColumns = ['ID', 'name', 'nationality'];
 
   moviesTableDataSource = new MatTableDataSource<Movie>([]);
@@ -37,19 +37,19 @@ export class MoviesAndDirectorsComponent implements OnInit {
       nationality: this.inputDirectorNationality,
     };
 
-    const directorsForMovie: Director[] = [];
-    directorsForMovie.push(director);
-
     const movie: Movie = {
       id: this.service.generateId(),
       title: this.inputMovieTitle,
-      directors: directorsForMovie,
+      director,
     };
 
     await this.service.addMovieAndDirector(movie, director);
+    this.populateTable();
   }
+
   async deleteMovieAndDirector() {
     await this.service.deleteMovieAndDirector(this.inputMovieId, this.inputDirectorId);
+    this.populateTable();
   }
 
   async performDeadlock() {
@@ -72,13 +72,13 @@ export class MoviesAndDirectorsComponent implements OnInit {
     const user1: User = {
       id: this.service.generateId(),
       name: 'User name deadlock',
-      email: 'User name email',
+      email: 'User email deadlock',
     };
 
     const user2: User = {
       id: this.service.generateId(),
       name: 'User name deadlock',
-      email: 'User name email',
+      email: 'User email deadlock',
     };
 
     const users: User[] = [];
